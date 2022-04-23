@@ -1,10 +1,11 @@
+import PostsGrid from '../posts/PostsGrid';
 import classes from './FeaturedPosts.module.css';
 
-function FeaturedPosts() {
+function FeaturedPosts({ posts }) {
   return (
     <section className={classes.latest}>
       <h2>Featured Posts</h2>
-      {/* {post grid will go here} */}
+      <PostsGrid posts={posts} />
     </section>
   );
 }
