@@ -11,6 +11,11 @@
 
 .content p {
   color: var(--color-grey-800);
+  margin: 1rem 0;
+}
+
+.content hr {
+  margin: 1rem 0;
 }
 
 .content .image {
