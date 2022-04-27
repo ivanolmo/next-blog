@@ -1,6 +1,6 @@
 import classes from './Notification.module.css';
 
-function Notification({ notification }) {
+export default function Notification({ notification }) {
   const { title, message, status } = notification;
 
   let statusClasses = '';
@@ -13,14 +13,10 @@ function Notification({ notification }) {
     statusClasses = classes.error;
   }
 
-  const cssClasses = `${classes.notification} ${statusClasses}`;
-
   return (
-    <div className={cssClasses}>
+    <div className={`${classes.notification} ${statusClasses}`}>
       <h2>{title}</h2>
       <p>{message}</p>
     </div>
   );
 }
-
-export default Notification;
