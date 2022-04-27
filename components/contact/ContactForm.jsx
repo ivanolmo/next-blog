@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 import Notification from '../ui/Notification';
 import classes from './ContactForm.module.css';
@@ -10,6 +10,16 @@ export default function ContactForm() {
   const emailRef = useRef();
   const nameRef = useRef();
   const messageRef = useRef();
+
+  useEffect(() => {
+    if (reqStatus === 'success' || reqStatus === 'error') {
+      const timer = setTimeout(() => {
+        setReqError(null);
+        setReqStatus(null);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [reqStatus]);
 
   async function contactHandler(e) {
     e.preventDefault();
@@ -32,6 +42,10 @@ export default function ContactForm() {
       const data = await response.json();
 
       setReqStatus('success');
+
+      emailRef.current.value = '';
+      nameRef.current.value = '';
+      messageRef.current.value = '';
 
       if (!response.ok) {
         throw new Error(data.message || 'Something went wrong');
